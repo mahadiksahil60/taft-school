@@ -1,0 +1,146 @@
+.parentContainer {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.logoAndHeader {
+	height: 16%;
+	width: 96%;
+	/* background-color: red; */
+	display: flex;
+	flex-direction: row;
+	justify-content:center;
+	padding: 2%;
+	gap: 5%;
+	align-items: center;
+}
+
+.logoAndHeader img {
+	/* border: 2px double black; */
+	padding: 1%;
+	height: 70%;
+}
+
+.pageBody {
+    overflow-y: auto;
+	overflow-x: hidden;
+    /* background-color: red; */
+    margin-top: 14%;
+    /* margin-bottom: 16%; */
+    height: 100%;
+}
+
+.innerDiv {
+	/* background-color: blue; */
+	overflow-y: auto;
+	height: 100%;
+	width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+}
+
+.heading {
+	font-size: 25px;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-weight: bolder;
+	color: #660018;
+}	
+
+.form {
+	height: 84%;
+	/* background-color: red;	 */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5%;
+	justify-content: flex-start;
+	padding: 5%;
+}
+
+.cell {
+	width: 90%;
+}
+
+.timecell {
+	width: 90%;
+	display: flex;
+	flex-direction: row;
+	gap : 3%;
+
+}
+
+.blurEffect {
+	filter: blur(40px);
+}
+
+.schedule {
+    height: 70%;
+    width: 80%;
+	perspective: 1000px; 
+}
+
+.scheduleText {
+    height: 10%;   
+     width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    color: var(--grey-color)
+}
+
+.mediaPicker { 
+    height:10%;
+	width: 100%;
+    display: flex;
+	flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+	box-sizing: border-box;
+
+	color: var(--red-color)
+}
+.schedule img {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px 8px rgba(0, 0, 0, 0.2);
+}
+
+  
+  .cardInner {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	transform-style: preserve-3d;
+  }
+  
+  .cardFront, .cardBack {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 10px;
+	overflow: hidden;
+  }
+  
+  .cardFront {
+	background: #3498db;
+  }
+  
+  .cardBack {
+	background: #e74c3c;
+	transform: rotateY(180deg);
+  }
+  

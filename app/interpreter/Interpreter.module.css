@@ -1,0 +1,83 @@
+.parentContainer {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	background-color: whitesmoke;
+}
+
+.logoAndHeader {
+	height: 16%;
+	width: 96%;
+	/* background-color: red; */
+	display: flex;
+	flex-direction: row;
+	justify-content:center;
+	padding: 2%;
+	gap: 5%;
+	align-items: center;
+}
+
+.logoAndHeader img {
+	/* border: 2px double black; */
+	padding: 1%;
+	height: 70%;
+}
+
+.pageBody {
+    overflow-y: auto;
+	overflow-x: hidden;
+    /* background-color: red; */
+    margin-top: 14%;
+    margin-bottom: 16%;
+    height: 100%;
+}
+
+.innerDiv {
+	/* background-color: blue; */
+	overflow-y: auto;
+	height: 100%;
+	width: 100%;
+}
+
+.heading {
+	font-size: 25px;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-weight: bolder;
+	color: #660018;
+}	
+
+.form {
+	height: 84%;
+	/* background-color: red;	 */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5%;
+	justify-content: flex-start;
+	padding: 5%;
+}
+
+.cell {
+	width: 90%;
+}
+
+.timecell {
+	width: 90%;
+	display: flex;
+	flex-direction: row;
+	gap : 3%;
+
+}
+
+.blurEffect {
+	filter: blur(40px);
+}
+
+.cards { 
+	height: 98%;
+	padding: 8% 4%;;
+	display: flex;
+	flex-direction: column;
+	gap: 6%;
+}
