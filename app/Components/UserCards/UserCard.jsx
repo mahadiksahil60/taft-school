@@ -7,7 +7,6 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const UserCard = ({ RequestObject, type }) => {
   const role = "admin";
-  console.log(RequestObject, "request object");
   const giveLayout = () => {
     switch (role) {
       case "interpreter":

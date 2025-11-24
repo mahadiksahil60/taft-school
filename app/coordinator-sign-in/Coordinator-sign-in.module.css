@@ -1,0 +1,104 @@
+
+.parentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: #f0f0f0;
+}
+
+.header {
+    height: 25%;
+    width: 100%;
+    color: var(--grey-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 1.3em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bolder;
+}
+
+.form {
+    height: 55%;
+    width: 100%;
+    /* background-color: red;	 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5%;
+    justify-content: center;
+    padding: 5%;
+}
+
+.cell {
+    width: 90%;
+}
+
+.footer {
+    width: 100%;
+    background-color: whitesmoke;
+    height: 9%;
+    bottom: 0;
+    position: fixed;
+    border-radius: 10px 10px 0px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 10px 10px 20px 15px rgba(0, 0, 0, 0.3);
+}
+
+.innerText {
+    width: 100%;
+    height: 70%;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+    align-items: center;
+}
+
+.checkboxdiv {
+    display: flex;
+    width: 90%;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 2%;
+}
+
+.question {
+    font-size: 0.9em;
+}
+
+.logoAndHeader {
+    height: 14%;
+    font-size: 25px;
+    font-size: 25px;
+    margin-top: 15%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bolder;
+    width: 96%;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5%;
+    align-items: center;
+}
+
+.logoAndHeader img {
+    /* border: 2px double black; */
+    padding: 1%;
+    height: 70%;
+}
+
+.login {
+    font-size: 25px;
+    font-weight: bolder;
+    color: var(--red-color)
+}

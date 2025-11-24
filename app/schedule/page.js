@@ -26,7 +26,9 @@ const Schedule = () => {
     setOpen(!open);
   };
 
-  console.log("this is gf");
+  const cloudName = 'dm5j1tr8s'; // Replace with your Cloudinary cloud name
+  const publicId = "uploads/uploads/regular";
+  const imageUrl = `https://res.cloudinary.com/${cloudName}/image/upload/${publicId}.jpg`;
 
   if (!isClient) {
     return null;
@@ -90,7 +92,7 @@ const Schedule = () => {
               >
                 <div className={styles.cardFront}>
                   {/* {giveSchedule()} */}
-                  <Image src={Professional} alt="Professional Schedule" />
+                  <Image src={imageUrl} alt="Professional Schedule" />
                 </div>
                 <div className={styles.cardBack}>
                   <Image src={Regular} alt="Regular Schedule" />

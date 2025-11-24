@@ -1,0 +1,44 @@
+.inputWrapper {
+    position: relative;
+    width: 300px;
+    margin: 20px 0;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.emailInput {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    background: #fff;
+    outline: none;
+    color: #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.emailInput::placeholder {
+    color: #aaa;
+    transition: color 0.3s ease;
+}
+
+.emailInput:hover {
+    border-color: #888;
+}
+
+.emailInput:focus {
+    border-color: var(--red-color);
+    box-shadow: 0 0 8px rgba(79, 70, 229, 0.25);
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

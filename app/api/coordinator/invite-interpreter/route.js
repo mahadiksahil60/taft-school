@@ -1,50 +1,67 @@
 import prisma from "@/app/lib/prisma";
-import { SendMail } from "@/app/utils/mailer";
-import { randomBytes } from "crypto";
-import { NextResponse } from "next/server";
+import {SendMail} from "@/app/utils/mailer";
+import {NextResponse} from "next/server";
+import {UserType} from "@prisma/client";
+
+const giveProfile = (type) => {
+    if (type.toString().trim().toLowerCase() === UserType.Interpreter.toString().trim().toLowerCase()) {
+        return UserType.Interpreter;
+    } else if (type.toString().trim().toLowerCase() === UserType.Coordinators.toString().trim().toLowerCase()) {
+        return UserType.Coordinators;
+    } else if (type.toString().trim().toLowerCase() === UserType.Admin.toString().trim().toLowerCase()) {
+        return UserType.Admin;
+    } else {
+        return null
+    }
+}
 
 export async function POST(req) {
-  const { coordinator_id, interpreter_email } = await req.json();
-  try {
-    if (!interpreter_email) {
-      return NextResponse.json(
-        { message: "Invalid interpreter mail" },
-        { status: 409 }
-      );
-    }
+    const {email, type} = await req.json();
+    try {
+        if (!email) {
+            return NextResponse.json(
+                {message: "Invalid mail"},
+                {status: 409}
+            );
+        }
 
-    const token = randomBytes(32).toString("hex");
-    const expiresAt = new Date();
-    expiresAt.setHours(expiresAt.getHours() + 24);
-    const inviteLink = `${process.env.NEXT_PUBLIC_BASE_URL}/register?token=${token}`;
-    await SendMail({
-      to: interpreter_email,
-      subject: "Invitation",
-      role: "Interpreter",
-      link: inviteLink,
-    })
-      .then(async () => {
-        await prisma.invites.create({
-          data: {
-            email: interpreter_email.toString(),
-            token,
-            expiresAt,
-          },
-        });
-      })
-      .catch((error) => {
+        const profile = giveProfile(type);
+
+        if (profile === null) {
+            return NextResponse.json({message: "Invalid user type found please contact the dev"})
+        }
+
+        const Code = Math.floor(1000 + Math.random() * 9000);
+        const inviteLink = `${process.env.NEXT_PUBLIC_BASE_URL}`;
+        await SendMail({
+            to: email,
+            subject: "Invitation",
+            role: type,
+            link: inviteLink,
+            code: Code,
+        })
+            .then(async () => {
+                await prisma.registrationcode.create({
+                    data: {
+                        email: email,
+                        code: Code.toString(),
+                        profile
+                    },
+                });
+            })
+            .catch((error) => {
+                return NextResponse.json(
+                    {message: "Failed to send mail", error},
+                    {status: 500}
+                );
+            });
+
+        return NextResponse.json("mail sent successfully", {status: 200});
+    } catch (error) {
+        console.log(error?.message);
         return NextResponse.json(
-          { message: "Failed to send mail", error },
-          { status: 500 }
+            {message: "Internal Server Error", error},
+            {status: 500}
         );
-      });
-
-    return NextResponse.json("mail sent successfully", { status: 200 });
-  } catch (error) {
-    console.log(error?.message);
-    return NextResponse.json(
-      { message: "Internal Server Error", error },
-      { status: 500 }
-    );
-  }
+    }
 }

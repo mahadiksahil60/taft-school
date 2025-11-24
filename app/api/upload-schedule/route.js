@@ -32,10 +32,10 @@ export async function POST(req) {
       );
       uploadStream.end(fileBuffer);
     });
-    console.log(result.public_id);
+    console.log(result.public_id, "this is the public id for fetching");
     return NextResponse.json({ url: result.public_id }, { status: 200 });
   } catch (error) {
-    console.log(error, "this is the error message");
+    console.log(error);
     return NextResponse.json(
       { message: "internal server error" },
       { status: 500 }

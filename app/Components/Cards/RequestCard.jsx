@@ -3,126 +3,60 @@ import styles from "./RequestCard.module.css";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import DeleteIcon from "@mui/icons-material/Delete";
-import RequestCardImg from "@/public/images/requestcard.png"
-import secondRequestImg from "@/public/images/RequestCardImg2.png"
 import Image from "next/image";
+import {isoToHumanReadableInEST} from "@/app/Common/CommonFunctions.js";
 
-const RequestCard = ({ RequestObject, type }) => {
-  const role = "interpreter";
+const RequestCard = ({RequestObject, type, handleClick}) => {
+    return (
+        <div className={styles.parentContainer}>
+            {/*<div className={styles.imageWrapper}>*/}
+            {/*    <Image*/}
+            {/*        src={RequestObject?.image || "/images/requestcard.png"}*/}
+            {/*        alt="request"*/}
+            {/*        width={60}*/}
+            {/*        height={60}*/}
+            {/*        className={styles.avatar}*/}
+            {/*    />*/}
+            {/*</div>*/}
 
-  const giveLayout = () => {
-    switch (role) {
-      case "interpreter":
-        return (
-          <>
-            <section className={styles.textualInfo}>
-              <section className={styles.row}>
-                <span className={styles.cell}>
-                  {RequestObject.student_name}
-                </span>
-                <span className={styles.cell}>
-                  Event: {RequestObject.name_of_event}
-                </span>
-              </section>
-              <section className={styles.row}>
-                <span className={styles.cell}>
-                  {RequestObject.student_email}
-                </span>
-                <span className={styles.cell}>{RequestObject.location}</span>
-              </section>
-              <section className={styles.row}>
-                <span className={styles.cell}>
-                  Date: {RequestObject.date_of_event}{" "}
-                  {RequestObject.time_of_event}
-                </span>
-              </section>
-            </section>
-            <section className={styles.buttons}>
-              {type === "Request" ? (
-                <AddTaskIcon
-                  sx={{
-                    color: "var(--red-color)",
-                    height: "70%",
-                    width: "70%",
-                  }}
-                />
-              ) : (
-                <DeleteIcon
-                  sx={{
-                    color: "var(--red-color)",
-                    height: "70%",
-                    width: "70%",
-                  }}
-                />
-              )}
-            </section>
-          </>
-        );
-      default:
-        return (
-          <>
-            <section className={styles.textualInfo}>
-              <section className={styles.row}>
-                <span className={styles.cell}>
-                  {RequestObject.student_name}
-                </span>
-                <span className={styles.cell}>
-                  Event: {RequestObject.name_of_event}
-                </span>
-              </section>
-              <section className={styles.row}>
-                <span className={styles.cell}> </span>
-                <span className={styles.cell}>{RequestObject.location}</span>
-              </section>
-              <section className={styles.row}>
-                <span className={styles.cell}>
-                  Date: {RequestObject.date_of_event}{" "}
-                  {RequestObject.time_of_event}
-                </span>
-              </section>
-            </section>
-            <section className={styles.buttons}>
-              {type === "Request" ? (
-                <DeleteIcon
-                  sx={{
-                    color: "var(--red-color)",
-                    height: "70%",
-                    width: "70%",
-                  }}
-                />
-              ) : (
-                <DeleteIcon
-                  sx={{
-                    color: "var(--red-color)",
-                    height: "70%",
-                    width: "70%",
-                  }}
-                />
-              )}
-            </section>
-          </>
-        );
-    }
-  };
+            <div className={styles.detailsWrapper}>
+                <h3 className={styles.name}>{RequestObject?.student_name}</h3>
+                <p className={styles.description}>{RequestObject?.student_email}</p>
+                <p className={styles.description}>{RequestObject?.name_of_event}</p>
+                <p className={styles.time}>{RequestObject?.location_of_event}</p>
+                <p className={styles.time}>
+                    {isoToHumanReadableInEST(RequestObject?.eventDateTime)}
+                </p>
+            </div>
 
-  return (
-    <div className={styles.parentContainer}>
-      <div className={styles.icon}>
-        <Image 
-        src={secondRequestImg}
-        alt="Request"
-        />
-        {/* <PersonAddIcon
-          sx={{
-            color: "var(--red-color)",
-            height: "100%",
-            width: "100%",
-          }}
-        /> */}
-      </div>
-      <div className={styles.info}>{giveLayout()}</div>
-    </div>
-  );
+            <div className={styles.buttonWrapper}>
+                {type === "add" && (
+                    <button
+                        onClick={() => handleClick(RequestObject)}
+                        className={styles.addButton}
+                    >
+                        <PersonAddIcon fontSize="small"/> Add
+                    </button>
+                )}
+                {type === "Request" && (
+                    <button
+                        onClick={() => handleClick()}
+                        className={styles.approveButton}
+                    >
+                        <AddTaskIcon fontSize="small"/> Approve
+                    </button>
+                )}
+                {type === "Assignments" && (
+                    <button
+                        onClick={() => handleClick()}
+                        className={styles.deleteButton}
+                    >
+                        <DeleteIcon fontSize="small"/> Remove
+                    </button>
+                )}
+            </div>
+        </div>
+    );
 };
 
 export default RequestCard;

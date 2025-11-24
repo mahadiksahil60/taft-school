@@ -9,10 +9,12 @@ export const makeApiCall = async (method, url, payload = {}, headers = {}) => {
       params: method === "GET" ? payload : null, // Attach query params for GET requests
       headers,
     });
-
+    console.log(response, "response from make api calll");
     return response.data;
   } catch (error) {
-    console.error("API Call Error:", error.response?.data || error.message);
-    throw error.response?.data || error.message;
+    console.log(error?.response?.data.error, "error from make api call");
+    throw error?.response?.data.error;
   }
 };
+
+export const secretKey = "12345678";
